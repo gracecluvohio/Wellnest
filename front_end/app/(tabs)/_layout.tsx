@@ -1,5 +1,7 @@
 import { Tabs } from 'expo-router'; 
 import Ionicons from '@expo/vector-icons/Ionicons';
+import SettingsButton from '@/components/SettingsButton';
+
 
 const ICON_SIZE = 24;
 const HEADER_ALIGNMENT = 'left';
@@ -29,7 +31,7 @@ export default function TabLayout() {
                 ),
                 headerRight: () => (
                     <>
-                        <Ionicons name="settings" size={ICON_SIZE} color="#fff" style={{ marginRight: 15 }} />
+                        <SettingsButton />
                         <Ionicons name="help" size={ICON_SIZE} color="#fff" style={{ marginRight: 15 }} />
                     </>
                 ),
