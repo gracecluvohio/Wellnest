@@ -43,6 +43,11 @@ export default function TabLayout() {
                 tabBarIcon: ({ color, focused }) => (
                 <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={ICON_SIZE} />
                 ),
+                headerLeft: () => (
+                    <>
+                      <Ionicons size={ICON_SIZE} name="menu" color="white" style={{marginLeft: 15}} />
+                    </>
+                  )
             }}
             />
             <Tabs.Screen
