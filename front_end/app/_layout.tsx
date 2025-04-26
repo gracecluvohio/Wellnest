@@ -11,6 +11,13 @@ export default function RootLayout() {
           backgroundColor: '#25292e',
         }
       }}/> 
+      <Stack.Screen name="newchat" options={{
+        title: 'New Chat',
+        headerTintColor: '#fff',
+        headerStyle: {
+          backgroundColor: '#25292e',
+        }
+      }}/> 
       <Stack.Screen name="+not-found" /> 
     </Stack>
   );

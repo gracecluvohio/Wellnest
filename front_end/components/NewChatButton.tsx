@@ -1,14 +1,16 @@
 import { StyleSheet, View, Pressable } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from 'expo-router';
 
-export default function SettingsButton() {
+const PLUS_ICON_SIZE = 96;
+
+export default function NewChatButton() {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
             {/* @ts-ignore */}
-            <Pressable style={styles.button} onPress={() => navigation.navigate('settings')}>
-                <Ionicons name="settings" size={24} color="white" />
+            <Pressable style={styles.button} onPress={() => navigation.navigate('newchat')}>
+                <AntDesign size={PLUS_ICON_SIZE} name="pluscircleo" color="white" />
             </Pressable>
         </View>
     );

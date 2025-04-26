@@ -9,6 +9,7 @@ import {
     GestureHandlerRootView
 } from "react-native-gesture-handler";
 import React, { useState } from "react";
+import NewChatButton from "@/components/NewChatButton";
 
 const DEFAULT_ICON_SIZE = 24;
 const PLUS_ICON_SIZE = 96;
@@ -58,7 +59,7 @@ export default function Chat() {
             <PanGestureHandler onGestureEvent={handleGestureEvent}>
                 <View style={styles.chat_screen}>
                     <View style={styles.chat_screen}>
-                        <AntDesign size={PLUS_ICON_SIZE} name="pluscircleo" color="white" />
+                        <NewChatButton />
                     </View>
                     {/* TODO: Add logic to handle icons changing on swipe  */}
                     {/* TODO: Make a function out of this whenever a new chat is created  */}
