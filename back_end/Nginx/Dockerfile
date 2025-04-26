@@ -8,9 +8,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy website content
-COPY ../Nginx/html/website /var/www/html/website
-
 # Copy Nginx config file
 COPY docker-resources/nginx/default.conf /etc/nginx/sites-available/default
 

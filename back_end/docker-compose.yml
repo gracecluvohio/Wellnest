@@ -8,14 +8,13 @@ services:
       - wellnest-user
       - wellnest-prompt
     ports:
-      - "80:80"
-      - "443:443"
+      - "8080:8080"
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/lib/letsencrypt:/var/lib/letsencrypt
     networks:
       wellnest-network:
-        ipv4_address: 192.168.1.10
+        ipv4_address: 172.28.1.10
 
   wellnest-user:
     build:
@@ -23,46 +22,53 @@ services:
       dockerfile: Dockerfile
     container_name: wellnest-user
     expose:
-      - "8080" # Only expose to internal network
+      - "3000"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/wellnest_db
-      - SPRING_DATASOURCE_USERNAME=wellnest_user
-      - SPRING_DATASOURCE_PASSWORD=wellnest_password
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_JPA_SHOW_SQL=true
+      - MONGO_URL=mongodb://wellnest-userdb:27017/wellnest_db
     depends_on:
-      - database
+      - wellnest-userdb
     networks:
       wellnest-network:
-        ipv4_address: 192.168.1.20
+        ipv4_address: 172.28.1.20
 
   wellnest-prompt:
     build:
-      context: ./Promt-Server
+      context: ./Prompt-Server
       dockerfile: Dockerfile
     container_name: wellnest-prompt
     expose:
-      - "8080" # Only expose to internal network
+      - "3000"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/wellnest_db
-      - SPRING_DATASOURCE_USERNAME=wellnest_user
-      - SPRING_DATASOURCE_PASSWORD=wellnest_password
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_JPA_SHOW_SQL=true
+      - MONGO_URL=mongodb://wellnest-chatdb:27017/wellnest_db
     depends_on:
-      - database
+      - wellnest-chatdb
     networks:
       wellnest-network:
-        ipv4_address: 192.168.1.30
+        ipv4_address: 172.28.1.30
 
-  mongodb:
+  wellnest-userdb:
     image: mongo:6.0
-    container_name: wellnest-mongodb
+    container_name: wellnest-userdb
     volumes:
-      - mongo-data:/data/db
+      - mongo-user-data:/data/db
     networks:
       wellnest-network:
-        ipv4_address: 192.168.1.101
+        ipv4_address: 172.28.1.101
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      start_period: 5s
+      retries: 5
+
+  wellnest-chatdb:
+    image: mongo:6.0
+    container_name: wellnest-chatdb
+    volumes:
+      - mongo-chat-data:/data/db
+    networks:
+      wellnest-network:
+        ipv4_address: 172.28.1.102
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 10s
@@ -75,6 +81,9 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 192.168.1.0/24
+        - subnet: 172.28.0.0/16
+
 volumes:
-  mongo-data:
+  mongo-user-data:
+  mongo-chat-data:
+
