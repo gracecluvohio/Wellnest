@@ -1,4 +1,7 @@
 const { OpenAI } = require('openai');
+const fs = require('fs');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -44,7 +47,6 @@ const userInfoSchema = new mongoose.Schema({
     type: {
         type: String,
         required: true,
-        unique: true,
     },
     info: {
         type: JSON,
@@ -129,6 +131,69 @@ app.get('/chat', async (req, res) => {
     }
     res.json({ chatHistory: chatHistory });
 });
+
+// Get a user's apple watch info as a json object
+app.post('/user-info-watch', async (req, res) => {
+    const { appleId, data } = req.body;
+    if (!appleId || !data) {
+        return res.status(400).json({ error: 'Apple ID and type are required' });
+    }
+
+    let type = 'watch';
+    let userInfo = await UserInfo.find({ appleId: appleId, type: type });
+    if (!userInfo) {
+        UserInfo = new UserInfo({
+            appleId: appleId,
+            type: type,
+            info: data
+        });
+    } else {
+        userInfo = await UserInfo.findOneAndUpdate({ appleId: appleId, type: type }, { info: data });
+    }
+    await userInfo.save();
+    res.json({ message: 'User info saved successfully' });
+});
+
+// Get a user's document info as pdf file
+app.post('/user-info-document', async (req, res) => {
+    const appleId = req.body.appleId;
+    const file = req.file;
+    if (!appleId || !file) {
+        return res.status(400).json({ error: 'Apple ID and type are required' });
+    }
+
+    let type = 'document';
+    const uploadedFile = await openai.files.create({
+        file: fs.createReadStream(file.path),
+        purpose: 'user_info'
+    });
+    const data = await openai.responses.create({
+        model: 'gpt-4o',
+        input: [
+            {
+                role: 'user',
+                content: [
+                    {
+                        type: 'input_file',
+                        file_id: uploadedFile.id,
+                    },
+                    {
+                        type: 'input_text',
+                        text: 'Please extract the user info from this document and return it as a JSON object.',
+                    }
+                ]
+            }
+        ]
+    });
+    let userInfo = new UserInfo({
+        appleId: appleId,
+        type: type,
+        info: data
+    });
+    await userInfo.save();
+    res.json({ message: 'User info saved successfully' });
+});
+
 
 app.listen(port, '0.0.0.0', () => {
     console.log(`Prompt server listening on port ${port}`);
