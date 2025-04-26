@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingVertical: 10,
         alignItems: 'center',
+        marginBottom: 84,
     },
     input: {
         flex: 1,
