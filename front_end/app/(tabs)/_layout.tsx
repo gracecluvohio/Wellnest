@@ -1,6 +1,9 @@
 import { Tabs } from 'expo-router'; 
 import Ionicons from '@expo/vector-icons/Ionicons';
 
+const ICON_SIZE = 24;
+const HEADER_ALIGNMENT = 'left';
+
 export default function TabLayout() {
     return (
         <Tabs
@@ -19,27 +22,30 @@ export default function TabLayout() {
             <Tabs.Screen 
                 name="index" 
                 options={{ 
+                    headerTitleAlign: HEADER_ALIGNMENT,
                     title: 'Home',
                     tabBarIcon: ({ color, focused }) => (
-                        <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
+                        <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={ICON_SIZE} />
                     ),
                 }} 
             />
             <Tabs.Screen 
                 name="chat" 
                 options={{ 
+                    headerTitleAlign: HEADER_ALIGNMENT,
                     title: 'Chat',
                     tabBarIcon: ({ color, focused }) => (
-                        <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24}/>
+                        <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={ICON_SIZE}/>
                     ),
                 }} 
             />
             <Tabs.Screen 
                 name="add" 
                 options={{ 
+                    headerTitleAlign: HEADER_ALIGNMENT,
                     title: 'Add',
                     tabBarIcon: ({ color, focused }) => (
-                        <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24}/>
+                        <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={ICON_SIZE}/>
                     ),
                 }} 
             />
