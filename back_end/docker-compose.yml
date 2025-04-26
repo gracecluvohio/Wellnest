@@ -1,0 +1,80 @@
+services:
+  wellnest-nginx:
+    build:
+      context: ./Nginx
+      dockerfile: Dockerfile
+    container_name: wellnest-nginx
+    depends_on:
+      - wellnest-user
+      - wellnest-prompt
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/lib/letsencrypt:/var/lib/letsencrypt
+    networks:
+      wellnest-network:
+        ipv4_address: 192.168.1.10
+
+  wellnest-user:
+    build:
+      context: ./User-Server
+      dockerfile: Dockerfile
+    container_name: wellnest-user
+    expose:
+      - "8080" # Only expose to internal network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/wellnest_db
+      - SPRING_DATASOURCE_USERNAME=wellnest_user
+      - SPRING_DATASOURCE_PASSWORD=wellnest_password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+    depends_on:
+      - database
+    networks:
+      wellnest-network:
+        ipv4_address: 192.168.1.20
+
+  wellnest-prompt:
+    build:
+      context: ./Promt-Server
+      dockerfile: Dockerfile
+    container_name: wellnest-prompt
+    expose:
+      - "8080" # Only expose to internal network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/wellnest_db
+      - SPRING_DATASOURCE_USERNAME=wellnest_user
+      - SPRING_DATASOURCE_PASSWORD=wellnest_password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+    depends_on:
+      - database
+    networks:
+      wellnest-network:
+        ipv4_address: 192.168.1.30
+
+  mongodb:
+    image: mongo:6.0
+    container_name: wellnest-mongodb
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      wellnest-network:
+        ipv4_address: 192.168.1.101
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      start_period: 5s
+      retries: 5
+
+networks:
+  wellnest-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+volumes:
+  mongo-data:
