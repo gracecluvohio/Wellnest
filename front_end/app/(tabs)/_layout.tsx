@@ -43,7 +43,7 @@ export default function TabLayout() {
                 headerTitleAlign: HEADER_ALIGNMENT,
                 title: 'Chat',
                 tabBarIcon: ({ color, focused }) => (
-                <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={ICON_SIZE} />
+                <Ionicons name={focused ? 'chatbox' : 'chatbox-outline'} color={color} size={ICON_SIZE} />
                 ),
                 headerLeft: () => (
                     <>
@@ -58,7 +58,7 @@ export default function TabLayout() {
                 headerTitleAlign: HEADER_ALIGNMENT,
                 title: 'Add',
                 tabBarIcon: ({ color, focused }) => (
-                <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={ICON_SIZE} />
+                <Ionicons name={focused ? 'add' : 'add-outline'} color={color} size={ICON_SIZE} />
                 ),
             }}
             />
