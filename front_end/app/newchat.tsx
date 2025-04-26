@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, TextInput, TouchableOpacity, Text, KeyboardAvoidingView, Platform } from "react-native";
+import { View, StyleSheet, TextInput, TouchableOpacity, Text, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 
 export default function NewChat() {
@@ -12,34 +12,38 @@ export default function NewChat() {
     const onSubmit = (data: any) => {
         // TODO: send to backend
         console.log("User message:", data.message);
-        reset(); // clears the input field
+        reset(); 
     };
 
     return (
-        <KeyboardAvoidingView
-            style={styles.container}
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-        >
-            <View style={styles.inputWrapper}>
-                <Controller
-                    control={control}
-                    name="message"
-                    rules={{ required: true }}
-                    render={({ field: { onChange, value } }) => (
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Send a message..."
-                            placeholderTextColor="#999"
-                            onChangeText={onChange}
-                            value={value}
-                        />
-                    )}
-                />
-                <TouchableOpacity style={styles.sendButton} onPress={handleSubmit(onSubmit)}>
-                    <Text style={styles.sendText}>Send</Text>
-                </TouchableOpacity>
-            </View>
-        </KeyboardAvoidingView>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <KeyboardAvoidingView
+                style={styles.container}
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+            >
+                <View style={styles.inputWrapper}>
+                    <Controller
+                        control={control}
+                        name="message"
+                        rules={{ required: true }}
+                        render={({ field: { onChange, value } }) => (
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Send a message..."
+                                placeholderTextColor="#999"
+                                onChangeText={onChange}
+                                value={value}
+                                returnKeyType="send"
+                                onSubmitEditing={handleSubmit(onSubmit)} 
+                            />
+                        )}
+                    />
+                    <TouchableOpacity style={styles.sendButton} onPress={handleSubmit(onSubmit)}>
+                        <Text style={styles.sendText}>Send</Text>
+                    </TouchableOpacity>
+                </View>
+            </KeyboardAvoidingView>
+        </TouchableWithoutFeedback>
     );
 }
 
