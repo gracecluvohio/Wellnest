@@ -3,18 +3,20 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const fetch = require('node-fetch');
 
 const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
-
-mongoose.connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+console.log(process.env.MONGO_URL);
+try {
+    mongoose.connect(process.env.MONGO_URL);
+    console.log('MongoDB connected successfully');
+} catch (err) {
+    console.log('MongoDB connection failed:', err.message);
+    process.exit(1);
+}
 const userSchema = new mongoose.Schema({
-    appleId: {
+    uid: {
         type: String,
         required: true,
         unique: true,
@@ -36,12 +38,12 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-
 app.post('/login', async(req, res) => {
     const { identityToken } = req.body;
     if (!identityToken) {
         return res.status(400).json({ error: 'No identity token provided' });
     }
+    console.log("Received identity token:", identityToken);
 
     try {
         // Verify and decode the token
@@ -54,11 +56,11 @@ app.post('/login', async(req, res) => {
         console.log("User's Apple ID:", sub);
         console.log("User's email:", email);
         
-        let user = await User.findOne({ appleId: sub });
+        let user = await User.findOne({ uid: sub });
         if (!user) {
             // If user doesn't exist, create a new one
             user = new User({
-                appleId: sub,
+                uid: sub,
                 firstName: decoded.payload.firstName || '',
                 lastName: decoded.payload.lastName || ''
             });
@@ -73,7 +75,7 @@ app.post('/login', async(req, res) => {
 
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ error: 'Failed to verify Apple ID' });
+        return res.status(500).json({ error: 'Failed to verify User ID' });
     }
 });
 
