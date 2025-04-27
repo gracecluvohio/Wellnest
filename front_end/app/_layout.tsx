@@ -25,6 +25,7 @@ export default function RootLayout() {
           backgroundColor: '#25292e',
         }
       }}/> 
+      <Stack.Screen name="login" options={{headerShown: false}} />
       <Stack.Screen name="+not-found" /> 
     </Stack>
   );
