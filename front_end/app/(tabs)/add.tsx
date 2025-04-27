@@ -1,8 +1,8 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Platform, Text, Button, View, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Platform, Button } from "react-native";
 import * as DocumentPicker from "expo-document-picker";
 import React, { useState, useCallback } from "react";
+import { useNavigation } from "expo-router";
 
 const DEFAULT_ICON_SIZE = 24;
 const PLUS_ICON_SIZE = 96;
@@ -10,6 +10,7 @@ const PLUS_ICON_SIZE = 96;
 type FileResponse = DocumentPicker.DocumentPickerResult | File;
 
 export default function Add() {
+  const navigation = useNavigation();
   const [fileResponse, setFileResponse] = useState<FileResponse[]>([]);
 
   const handleDocumentSelection = useCallback(async () => {
@@ -43,6 +44,11 @@ export default function Add() {
     }
   }, []);
 
+  const handlePress = () => {
+    // @ts-ignore
+    navigation.navigate("manualinput");
+  };
+
   return (
     <>
       <View style={styles.add_screen}>
@@ -56,7 +62,7 @@ export default function Add() {
       {/* TODO: Add logic to handle icons changing on tap */}
       {/* TODO: handle form input  */}
       <View style={styles.add_options}>
-        <Text style={styles.manual_text}>Or Manual Input</Text>
+        <Button title="Or Manual Input" onPress={handlePress} />
       </View>
     </>
   );

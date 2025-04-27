@@ -18,6 +18,13 @@ export default function RootLayout() {
           backgroundColor: '#25292e',
         }
       }}/> 
+      <Stack.Screen name="manualinput" options={{
+        title: 'Manual Input',
+        headerTintColor: '#fff',
+        headerStyle: {
+          backgroundColor: '#25292e',
+        }
+      }}/> 
       <Stack.Screen name="+not-found" /> 
     </Stack>
   );

@@ -30,6 +30,7 @@ export default function Settings() {
                 sections={DATA}
                 keyExtractor={(item, index) => item + index}
                 renderItem={({ item }) => (
+                    // @ts-expect-error
                     <SettingsRow icon={icons[item]} title={item} hasToggle={item==="Theme"} />
                 )}
                 renderSectionHeader={({section: {title}}) => (
