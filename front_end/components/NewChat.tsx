@@ -1,19 +1,10 @@
-import { Text, View, StyleSheet, Pressable } from "react-native";
+import { StyleSheet, View, Pressable, Text } from "react-native";
 import dayjs from "dayjs";
 import isYesterday from "dayjs/plugin/isYesterday";
-import {
-  PanGestureHandler,
-  PanGestureHandlerGestureEvent,
-  GestureHandlerRootView,
-} from "react-native-gesture-handler";
-import React, { useState } from "react";
-import NewChatButton from "@/components/NewChatButton";
-import NewChat from "@/components/NewChat";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
-
-const now = dayjs().format("YYYY-MM-DD");
-
-dayjs.extend(isYesterday);
+const DEFAULT_ICON_SIZE = 24;
 
 const formatMessageTimestamp = (date: string): string => {
   const now = dayjs();
@@ -33,33 +24,39 @@ const formatMessageTimestamp = (date: string): string => {
   }
 };
 
-export default function Chat() {
-  const [swipeRight, setSwipeRight] = useState(false);
-
-  const handleGestureEvent = (event: PanGestureHandlerGestureEvent) => {
-    const { translationX } = event.nativeEvent;
-
-    if (translationX > 50) {
-      setSwipeRight(false);
-    } else if (translationX < -50) {
-      setSwipeRight(true);
-    } else if (Math.abs(translationX) < 10) {
-      setSwipeRight(false);
-    }
-  };
+export default function NewChat(swipeRight: any) {
+    const handlePencilPress = () => {
+        console.log("pencil");
+      };
+    
+      const handleTrashPress = () => {
+        console.log("trash");
+      };
 
   return (
-    <GestureHandlerRootView>
-      <PanGestureHandler onGestureEvent={handleGestureEvent}>
-        <View style={styles.chat_screen}>
-          <View style={styles.add_chat_button}>
-            <NewChatButton />
-            <Text style={styles.new_chat_text}>New Chat</Text>
-          </View>
-          <NewChat swipeRight={swipeRight} />
+    <>
+      <View style={styles.chat_options}>
+        <View style={styles.individual_chat}>
+          <Text style={styles.chat_text}>Chat screen</Text>
+          <Text style={styles.chat_text}>
+            {formatMessageTimestamp(dayjs().toString())}
+          </Text>
         </View>
-      </PanGestureHandler>
-    </GestureHandlerRootView>
+        {swipeRight.swipeRight && (
+          <View style={styles.right_swipe}>
+            <Pressable onPressOut={handleTrashPress}>
+              <Ionicons size={DEFAULT_ICON_SIZE} name="trash" color="white" />
+            </Pressable>
+            <Pressable onPressOut={handlePencilPress}>
+              <Ionicons size={DEFAULT_ICON_SIZE} name="pencil" color="white" />
+            </Pressable>
+          </View>
+        )}
+      </View>
+      <View style={styles.chat_options}>
+        <Text style={styles.description_text}>Description</Text>
+      </View>
+    </>
   );
 }
 
