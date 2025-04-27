@@ -26,6 +26,7 @@ export default function RootLayout() {
         }
       }}/> 
       <Stack.Screen name="login" options={{headerShown: false}} />
+      <Stack.Screen name="landing" options={{ headerShown: false }} />
       <Stack.Screen name="+not-found" /> 
     </Stack>
   );

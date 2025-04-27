@@ -1,27 +1,30 @@
-import { StyleSheet, View, Text, Switch } from 'react-native'; 
+import { StyleSheet, View, Text, Switch, Pressable } from 'react-native'; 
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 type Props = {
     icon: keyof typeof Ionicons.glyphMap;
     title: string; 
     hasToggle?: boolean;
+    handlePress?: () => void; 
 }
 
-export default function SettingsRow({ icon, title, hasToggle }: Props) {
+export default function SettingsRow({ icon, title, hasToggle, handlePress }: Props) {
     return (
-        <View style={styles.container}>
-            <Ionicons name={icon} size={24} color="white" />
-            <Text style={styles.title}>{title}</Text>
-            {hasToggle ? 
-                <Switch 
-                trackColor={{ false: "#767577", true: "#81b0ff" }}
-                thumbColor={false ? "#f5dd4b" : "#f4f3f4"}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={() => {}}
-                value={false}
-                /> : <></>
-            }
-        </View>
+        <Pressable onPress={handlePress}>
+            <View style={styles.container}>
+                <Ionicons name={icon} size={24} color="white" />
+                <Text style={styles.title}>{title}</Text>
+                {hasToggle ? 
+                    <Switch 
+                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                    thumbColor={false ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={() => {}}
+                    value={false}
+                    /> : <></>
+                }
+            </View>
+        </Pressable>
     );
 }
 

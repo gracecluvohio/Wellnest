@@ -1,10 +1,13 @@
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useForm } from "react-hook-form";
+import { useNavigation } from 'expo-router';
 
 const GoogleSignIn = require('@/assets/images/ios_neutral_rd_SI.png');
 
 export default function Login() {
+    const navigation = useNavigation();
+
     const { 
         register, 
         handleSubmit, 
@@ -49,6 +52,10 @@ export default function Login() {
                 onPress={handleSubmit((data) => {
                     alert(`Email: ${data.user}, Password: ${data.password}`);
                 })}
+                onPressOut={() => {
+                    // @ts-expect-error
+                    navigation.navigate('landing');
+                }}
             >
                 <Text style={styles.sendText}>Login</Text>
             </TouchableOpacity>
