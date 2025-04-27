@@ -25,35 +25,35 @@ export default function Login() {
     });
 
     return (
-        <View style={[styles.container, { backgroundColor: isDarkMode ? '#1c1c1e' : '#f2f2f7' }]}>
-            <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#1c1c1e'}]}>{"Wellnest"}</Text>
-            <MaterialCommunityIcons style={styles.logo} name="flower-tulip-outline" size={100} color={isDarkMode ? '#fff' : '#1c1c1e'} />
+        <View style={[styles.container, { backgroundColor: isDarkMode ? '#1A936F' : '#fff' }]}>
+            <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#1A936F'}]}>{"Wellnest"}</Text>
+            <MaterialCommunityIcons style={styles.logo} name="flower-tulip-outline" size={100} color={isDarkMode ? '#fff' : '#88D498'} />
             <Image source={GoogleSignIn} style={styles.googleSignIn} />
-            <Text style={styles.text}>{"or"}</Text>
+            <Text style={[styles.text, {color: isDarkMode ? '#fff': '#155F4B'}]}>{"or"}</Text>
             {/* <Switch value={isDarkMode} onValueChange={toggleDarkMode} /> */}
-            <View style={styles.inputWrapper}>
+            <View style={[styles.inputWrapper, { backgroundColor: isDarkMode ? '#fff' : '#eee' }]}>
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input]}
                     placeholder="Email or username"
-                    placeholderTextColor="#999"
+                    placeholderTextColor="#222"
                     {...register("user", { required: "Email is required" })}
                 />
             </View>
-            {errors.user && <Text style={{ color: 'red' }}>{errors.user.message}</Text>}
+            {/* {errors.user && <Text style={{ color: 'red' }}>{errors.user.message}</Text>} */}
 
-            <View style={styles.inputWrapper}>
+            <View style={[styles.inputWrapper, { backgroundColor: isDarkMode ? '#fff' : '#eee' }]}>
                 <TextInput
                     style={styles.input}
                     placeholder="Password"
-                    placeholderTextColor="#999"
+                    placeholderTextColor="#222"
                     secureTextEntry
                     {...register("password", { required: "Password is required" })}
                 />
             </View>
-            {errors.password && <Text style={{ color: 'red' }}>{errors.password.message}</Text>}
+            {/* {errors.password && <Text style={{ color: 'red' }}>{errors.password.message}</Text>} */}
 
             <TouchableOpacity
-                style={styles.sendButton}
+                style={[styles.sendButton, { backgroundColor: isDarkMode ? '#1A936F' : '#88D498' }]}
                 onPress={handleSubmit((data) => {
                     navigation.navigate("(tabs)");
                     // const login = async (username: string, password: string) => {
@@ -93,8 +93,7 @@ const styles = StyleSheet.create({
     }, logo: {
         marginBottom: 32, 
     }, text: {
-        fontSize: 16, 
-        color: '#fff', 
+        fontSize: 16,
         marginVertical: 18
     },
     inputWrapper: {
@@ -109,7 +108,6 @@ const styles = StyleSheet.create({
     },
     input: {
         flex: 1,
-        color: '#fff',
         fontSize: 16,
     },
     sendButton: {
