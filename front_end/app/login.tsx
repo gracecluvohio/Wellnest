@@ -1,12 +1,15 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Switch } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useForm } from "react-hook-form";
 import { useNavigation } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {ThemeProvider, useTheme} from '@/app/contexts/ThemeContext'; 
 
 const GoogleSignIn = require('@/assets/images/ios_neutral_rd_SI.png');
 
 export default function Login() {
+    const {isDarkMode, toggleDarkMode} = useTheme();
+    
     const navigation = useNavigation();
 
     const { 
@@ -22,11 +25,12 @@ export default function Login() {
     });
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>{"Wellnest"}</Text>
-            <MaterialCommunityIcons style={styles.logo} name="flower-tulip-outline" size={100} color="white" />
+        <View style={[styles.container, { backgroundColor: isDarkMode ? '#1c1c1e' : '#f2f2f7' }]}>
+            <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#1c1c1e'}]}>{"Wellnest"}</Text>
+            <MaterialCommunityIcons style={styles.logo} name="flower-tulip-outline" size={100} color={isDarkMode ? '#fff' : '#1c1c1e'} />
             <Image source={GoogleSignIn} style={styles.googleSignIn} />
             <Text style={styles.text}>{"or"}</Text>
+            {/* <Switch value={isDarkMode} onValueChange={toggleDarkMode} /> */}
             <View style={styles.inputWrapper}>
                 <TextInput
                     style={styles.input}
@@ -77,13 +81,15 @@ export default function Login() {
 const styles = StyleSheet.create({
     container: {
         flex: 1, 
-        backgroundColor: '#25292e', 
         alignItems: 'center', 
     }, 
     title: {
         marginTop: 128, 
-        fontSize: 30, 
+        fontSize: 64, 
         color: '#fff', 
+        marginBottom: 16,
+        fontWeight: 'bold',
+        fontFamily: 'Avenir',
     }, logo: {
         marginBottom: 32, 
     }, text: {

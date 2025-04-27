@@ -1,5 +1,6 @@
 import { StyleSheet, View, Text, Switch, Pressable } from 'react-native'; 
 import Ionicons from '@expo/vector-icons/Ionicons';
+import {ThemeProvider, useTheme} from '@/app/contexts/ThemeContext'; 
 
 type Props = {
     icon: keyof typeof Ionicons.glyphMap;
@@ -9,18 +10,20 @@ type Props = {
 }
 
 export default function SettingsRow({ icon, title, hasToggle, handlePress }: Props) {
+    const {isDarkMode, toggleDarkMode} = useTheme();
+
     return (
         <Pressable onPress={handlePress}>
-            <View style={styles.container}>
-                <Ionicons name={icon} size={24} color="white" />
-                <Text style={styles.title}>{title}</Text>
+            <View style={[styles.container, { backgroundColor: isDarkMode ? '#555' : '#fff' }]}>
+                <Ionicons name={icon} size={24} color={isDarkMode ? '#fff': '#555'} />
+                <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#555' }]}>{title}</Text>
                 {hasToggle ? 
                     <Switch 
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={false ? "#f5dd4b" : "#f4f3f4"}
+                    trackColor={{ false: "#81b0ff", true: "#111" }}
+                    thumbColor={isDarkMode ? "#81b0ff" : "#fff"}
                     ios_backgroundColor="#3e3e3e"
-                    onValueChange={() => {}}
-                    value={false}
+                    onValueChange={toggleDarkMode}
+                    value={isDarkMode}
                     /> : <></>
                 }
             </View>
@@ -34,9 +37,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 16,
         paddingHorizontal: 24,
-        borderBottomWidth: 1,
         borderRadius: 8,
-        backgroundColor: '#555',
         width: 320, 
     },
     icon: {

@@ -2,6 +2,7 @@ import { Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { useRouter, useNavigation } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ThemeProvider } from "@/app/contexts/ThemeContext";
 
 export function useAuth() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,41 +33,43 @@ export default function RootLayout() {
   }, [isLoggedIn]);
 
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="settings"
-        options={{
-          title: "Settings",
-          headerTintColor: "#fff",
-          headerStyle: {
-            backgroundColor: "#25292e",
-          },
-        }}
-      />
-      <Stack.Screen
-        name="newchat"
-        options={{
-          title: "New Chat",
-          headerTintColor: "#fff",
-          headerStyle: {
-            backgroundColor: "#25292e",
-          },
-        }}
-      />
-      <Stack.Screen
-        name="manualinput"
-        options={{
-          title: "Manual Input",
-          headerTintColor: "#fff",
-          headerStyle: {
-            backgroundColor: "#25292e",
-          },
-        }}
-      />
-      <Stack.Screen name="login" options={{ headerShown: false }} />
-      <Stack.Screen name="landing" options={{ headerShown: false }} />
-      <Stack.Screen name="+not-found" />
-    </Stack>
+    <ThemeProvider>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="settings"
+          options={{
+            title: "Settings",
+            headerTintColor: "#fff",
+            headerStyle: {
+              backgroundColor: "#25292e",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="newchat"
+          options={{
+            title: "New Chat",
+            headerTintColor: "#fff",
+            headerStyle: {
+              backgroundColor: "#25292e",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="manualinput"
+          options={{
+            title: "Manual Input",
+            headerTintColor: "#fff",
+            headerStyle: {
+              backgroundColor: "#25292e",
+            },
+          }}
+        />
+        <Stack.Screen name="login" options={{ headerShown: false }} />
+        <Stack.Screen name="landing" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+    </ThemeProvider>
   );
 }

@@ -1,7 +1,10 @@
 import { View, StyleSheet, Switch, SectionList, Text } from "react-native";
 import SettingsRow from "@/components/SettingsRow";
+import {ThemeProvider, useTheme} from '@/app/contexts/ThemeContext'; 
 
 export default function Settings() {
+    const {isDarkMode, toggleDarkMode} = useTheme();
+
     const DATA = [
         {
             title: 'Display', 
@@ -25,7 +28,7 @@ export default function Settings() {
     }
     
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: isDarkMode ? '#25292e' : '#aaa' }]}>
             <SectionList
                 sections={DATA}
                 keyExtractor={(item, index) => item + index}
@@ -34,7 +37,7 @@ export default function Settings() {
                     <SettingsRow icon={icons[item]} title={item} hasToggle={item==="Theme"} />
                 )}
                 renderSectionHeader={({section: {title}}) => (
-                    <Text style={{ fontSize: 24, color: 'white', marginTop: 20, marginBottom: 10 }}>{title}</Text>
+                    <Text style={{ fontSize: 24, color: isDarkMode ? '#fff' : '#111', marginTop: 20, marginBottom: 10 }}>{title}</Text>
                 )}
             />
         </View>
@@ -44,7 +47,6 @@ export default function Settings() {
 const styles = StyleSheet.create({
     container: {
         flex: 1, 
-        backgroundColor: '#25292e', 
         alignItems: 'center', 
     }, 
 })
