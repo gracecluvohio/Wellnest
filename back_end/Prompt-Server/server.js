@@ -130,7 +130,7 @@ user_data.save();
 
 
 app.get('/inspire-text', async (req, res) => {
-    const { uid } = req.body;
+    const { uid } = req.query;
     if (!uid) {
         return res.status(400).json({ error: 'User ID is required' });
     }
@@ -146,7 +146,7 @@ app.get('/inspire-text', async (req, res) => {
         console.error('MongoDB error:', error);
         return res.status(500).json({ error: 'Failed to fetch user info' });
     }
-    health_data = userInfo.map(info => info.info).join('\n');
+    health_data = userInfo.map(info => JSON.stringify(info.info)).join('\n');
 
     console.log(health_data);
     console.log('Health data retrieved for user:', uid);
@@ -289,7 +289,7 @@ app.get('/chat-dialog', async (req, res) => {
 });
 
 app.post('/new-chat', async (req, res) => {
-    const { uid } = req.body;
+    const { uid, prompt } = req.body;
     if (!uid) {
         return res.status(400).json({ error: 'User ID is required' });
     }
@@ -312,13 +312,21 @@ app.post('/new-chat', async (req, res) => {
     // let health_info = await UserInfo.find({ uid: uid, type: 'watch' });
     // const health_data = health_info.map(info => info.info);
 
-    const system_initial = 'You are a wellbeing coach, you will receive health data ' +
-    'from user and you will evaluate their health condition and recent activities. ' +
-    'Your job is to first reflect on the user\'s current health condition, and then ' +
-    'answer their questions. Act concisely and politely with sympathy.\n' +
-    'The user wants to be called by their nickname. If they don\'t have a nickname, ' +
-    'call them by their real name.\n' +
-    'First, greet the user and reflect on their recent health status!';
+    const system_initial = 'You are a knowledgeable and caring friend of the user, ' +
+        'focused on health and well-being. You will receive their health data, evaluate' +
+        ' their condition, and reflect briefly on their recent activities in a positive, ' +
+        'sympathetic tone.\n' +
+        'Greet the user warmly about today using relative time, and always call them by ' +
+        'their nickname (or real name if none is given). Pay attention to the current time.\n' +
+        'In your first message, offer a warmer and slightly longer reflection (around 3–4 ' +
+        'sentences) before asking how they feel.\n' +
+        'When referring to health data, include specific numbers and details rather than ' +
+        'general statements.\n' +
+        'Avoid topics outside health and well-being. If the user raises them, gently guide the ' +
+        'conversation back to physical and mental health without explicit refusal.\n' +
+        'Tomorrow’s weather is only a forecast and may not be accurate.\n' +
+        ' When appropriate, suggest activities that may support the user\'s health and well-being.\n' +
+        'Always speak softly and politely.';
 
     try {
         const stream = await openai.chat.completions.create({
@@ -326,9 +334,11 @@ app.post('/new-chat', async (req, res) => {
             stream: true,
             messages: [
                 { role: 'system', content: system_initial },
-                { role: 'user', content: health_data }
+                { role: 'user', content: JSON.stringify(prompt) }
             ]
         });
+
+
 
         res.setHeader('Content-Type', 'text/event-stream');
         res.setHeader('Cache-Control', 'no-cache');
@@ -381,17 +391,14 @@ app.post('/new-chat', async (req, res) => {
 
 app.post('/chat', async (req, res) => {
     console.log('Received request:', req.body);
-    const { uid, chatId, prompt } = req.body;
-    if (!uid || !chatId || !prompt) {
-        return res.status(400).json({ error: 'User ID, chat ID, and prompt are required' });
-    }
-    // Add new prompt to chat history
-    let chatHistory = await ChatHistory.findOne({ uid: uid, chatId: chatId });
+    const { uid, prompt } = req.body;
+
+    let chatHistory = await ChatHistory.findOne({ uid: uid });
     if (!chatHistory) {
-        return res.status(404).json({ error: 'Chat history not found' });
+        return res.status(404).send('Chat history not found');
     }
+
     console.log('Chat history:', chatHistory);
-    // Get type of chat history
     chatHistory.history.push({ role: 'user', content: prompt });
 
     try {
@@ -400,29 +407,29 @@ app.post('/chat', async (req, res) => {
             model: 'gpt-4o',
             messages: chatHistory.history,
         });
-        // Add new response to chat history
+
         chatHistory.history.push({ role: 'assistant', content: completion.choices[0].message.content });
-        // Update chat history to MongoDB
-        console.log('Chat history:', chatHistory);
         await chatHistory.save();
         console.log('Chat history updated successfully');
-        res.json({ response: completion.choices[0].message.content });
+
+        res.send(completion.choices[0].message.content);
     } catch (error) {
         console.error('OpenAI API error:', error);
-        res.status(500).json({ error: 'Failed to generate response' });
+        res.status(500).send('Failed to generate response');
     }
 });
 
+
 app.get('/chat', async (req, res) => {
-    const { uid, chatId } = req.query;
-    if (!uid || !chatId) {
+    const { uid, prompt } = req.query;
+    if (!uid) {
         return res.status(400).json({ error: 'User ID and Chat ID is required' });
     }
-    console.log('Received uid and chatId:', uid, chatId);
+    console.log('Received uid and chatId:', uid);
 
     // Fetch chat history from MongoDB and store in chatHistory global variable
     try {
-        let chatHistory = await ChatHistory.findOne({ uid: uid, chatId: chatId });
+        let chatHistory = await ChatHistory.findOne({ uid: uid });
         if (!chatHistory) {
             return res.status(404).json({ error: 'Chat history not found' });
         }

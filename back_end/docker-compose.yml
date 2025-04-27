@@ -40,7 +40,7 @@ services:
       - "3000"
     environment:
       - MONGO_URL=mongodb://wellnest-mongodb:27017/wellnest_db
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_API_KEY=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
 
     depends_on:
       - wellnest-mongodb
