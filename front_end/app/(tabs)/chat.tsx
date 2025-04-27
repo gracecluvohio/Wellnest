@@ -34,8 +34,11 @@ const formatMessageTimestamp = (date: string): string => {
   }
 };
 
+
 export default function Chat() {
   const { isDarkMode } = useTheme();
+  const dynamicTextColor = { color: isDarkMode ? "#fff" : "#000" };
+  const dynamicBackground = { backgroundColor: isDarkMode ? "#25292e" : "#f0f0f0" };
   const [swipeRight, setSwipeRight] = useState(false);
 
   const handleGestureEvent = (event: PanGestureHandlerGestureEvent) => {
@@ -54,9 +57,9 @@ export default function Chat() {
     <GestureHandlerRootView>
       <PanGestureHandler onGestureEvent={handleGestureEvent}>
         <View style={[styles.chat_screen, {backgroundColor: isDarkMode ? '#25292e' : '#fff'}]}>
-          <View style={styles.add_chat_button}>
+          <View style={[styles.add_chat_button, , {backgroundColor: isDarkMode ? '#25292e' : '#fff'}]}>
             <NewChatButton />
-            <Text style={styles.new_chat_text}>New Chat</Text>
+            <Text style={[styles.new_chat_text, dynamicTextColor]}>New Chat</Text>
           </View>
           <NewChat swipeRight={swipeRight} />
         </View>

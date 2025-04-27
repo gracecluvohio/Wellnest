@@ -3,10 +3,12 @@ import dayjs from "dayjs";
 import isYesterday from "dayjs/plugin/isYesterday";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { useTheme } from "@/app/contexts/ThemeContext";
 
 const DEFAULT_ICON_SIZE = 24;
 
 const formatMessageTimestamp = (date: string): string => {
+  const { isDarkMode } = useTheme();
   const now = dayjs();
   const input = dayjs(date);
 
@@ -25,40 +27,47 @@ const formatMessageTimestamp = (date: string): string => {
 };
 
 export default function NewChat(swipeRight: any) {
-    const handlePencilPress = () => {
-        console.log("pencil");
-      };
-    
-      const handleTrashPress = () => {
-        console.log("trash");
-      };
+  const { isDarkMode } = useTheme(); // ✅ Hook used correctly
+
+  const handlePencilPress = () => {
+    console.log("pencil");
+  };
+
+  const handleTrashPress = () => {
+    console.log("trash");
+  };
+
+  // ✅ Dynamic color based on dark mode
+  const dynamicTextColor = { color: isDarkMode ? "#fff" : "#000" };
+  const dynamicBackground = { backgroundColor: isDarkMode ? "#25292e" : "#f0f0f0" };
 
   return (
     <>
-      <View style={styles.chat_options}>
-        <View style={styles.individual_chat}>
-          <Text style={styles.chat_text}>Chat screen</Text>
-          <Text style={styles.chat_text}>
+      <View style={[styles.chat_options, dynamicBackground]}>
+        <View style={[styles.individual_chat, dynamicBackground]}>
+          <Text style={[styles.chat_text, dynamicTextColor]}>Chat screen</Text>
+          <Text style={[styles.chat_text, dynamicTextColor]}>
             {formatMessageTimestamp(dayjs().toString())}
           </Text>
         </View>
         {swipeRight.swipeRight && (
-          <View style={styles.right_swipe}>
+          <View style={[styles.right_swipe, dynamicBackground]}>
             <Pressable onPressOut={handleTrashPress}>
-              <Ionicons size={DEFAULT_ICON_SIZE} name="trash" color="white" />
+              <Ionicons size={DEFAULT_ICON_SIZE} name="trash" color={isDarkMode ? "white" : "black"} />
             </Pressable>
             <Pressable onPressOut={handlePencilPress}>
-              <Ionicons size={DEFAULT_ICON_SIZE} name="pencil" color="white" />
+              <Ionicons size={DEFAULT_ICON_SIZE} name="pencil" color={isDarkMode ? "white" : "black"} />
             </Pressable>
           </View>
         )}
       </View>
-      <View style={styles.chat_options}>
-        <Text style={styles.description_text}>Description</Text>
+      <View style={[styles.chat_options, dynamicBackground]}>
+        <Text style={[styles.description_text, dynamicTextColor]}>Description</Text>
       </View>
     </>
   );
 }
+
 
 const styles = StyleSheet.create({
   individual_chat: {
