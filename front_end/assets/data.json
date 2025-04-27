@@ -1,0 +1,953 @@
+[
+    {
+        "data": "your_data.json",
+        "metrics": "sleep_analysis",
+        "name": "sleep_analysis",
+        "days": [
+          {
+            "date": "2025-04-12",
+            "deep_sleep_hr": 1.75,
+            "deep_sleep_percent": 14.8,
+            "core_sleep_hr": 6.94,
+            "core_sleep_percent": 58.7,
+            "rem_sleep_hr": 2.64,
+            "rem_sleep_percent": 22.4,
+            "awake_hr": 0.48,
+            "awake_percent": 4.1,
+            "total_sleep_hr": 11.82
+          },
+          {
+            "date": "2025-04-13",
+            "deep_sleep_hr": 1.57,
+            "deep_sleep_percent": 21.3,
+            "core_sleep_hr": 4.22,
+            "core_sleep_percent": 57.1,
+            "rem_sleep_hr": 1.51,
+            "rem_sleep_percent": 20.4,
+            "awake_hr": 0.08,
+            "awake_percent": 1.1,
+            "total_sleep_hr": 7.38
+          },
+          {
+            "date": "2025-04-14",
+            "deep_sleep_hr": 1.52,
+            "deep_sleep_percent": 14.6,
+            "core_sleep_hr": 4.45,
+            "core_sleep_percent": 42.5,
+            "rem_sleep_hr": 2.12,
+            "rem_sleep_percent": 20.2,
+            "awake_hr": 0.53,
+            "awake_percent": 5.0,
+            "total_sleep_hr": 10.47
+          },
+          {
+            "date": "2025-04-15",
+            "deep_sleep_hr": 0.08,
+            "deep_sleep_percent": 1.2,
+            "core_sleep_hr": 2.82,
+            "core_sleep_percent": 41.3,
+            "rem_sleep_hr": 0.99,
+            "rem_sleep_percent": 14.5,
+            "awake_hr": 0.17,
+            "awake_percent": 2.6,
+            "total_sleep_hr": 6.83
+          },
+          {
+            "date": "2025-04-16",
+            "deep_sleep_hr": 0.97,
+            "deep_sleep_percent": 15.2,
+            "core_sleep_hr": 3.47,
+            "core_sleep_percent": 54.6,
+            "rem_sleep_hr": 1.73,
+            "rem_sleep_percent": 27.2,
+            "awake_hr": 0.19,
+            "awake_percent": 3.0,
+            "total_sleep_hr": 6.37
+          },
+          {
+            "date": "2025-04-17",
+            "deep_sleep_hr": 1.42,
+            "deep_sleep_percent": 16.1,
+            "core_sleep_hr": 3.9,
+            "core_sleep_percent": 44.4,
+            "rem_sleep_hr": 1.91,
+            "rem_sleep_percent": 21.7,
+            "awake_hr": 0.21,
+            "awake_percent": 2.4,
+            "total_sleep_hr": 8.78
+          },
+          {
+            "date": "2025-04-18",
+            "deep_sleep_hr": 1.52,
+            "deep_sleep_percent": 20.9,
+            "core_sleep_hr": 4.12,
+            "core_sleep_percent": 56.5,
+            "rem_sleep_hr": 1.47,
+            "rem_sleep_percent": 20.1,
+            "awake_hr": 0.18,
+            "awake_percent": 2.5,
+            "total_sleep_hr": 7.29
+          },
+          {
+            "date": "2025-04-19",
+            "deep_sleep_hr": 0.68,
+            "deep_sleep_percent": 6.8,
+            "core_sleep_hr": 5.98,
+            "core_sleep_percent": 59.5,
+            "rem_sleep_hr": 1.87,
+            "rem_sleep_percent": 18.6,
+            "awake_hr": 0.52,
+            "awake_percent": 5.1,
+            "total_sleep_hr": 10.06
+          },
+          {
+            "date": "2025-04-20",
+            "deep_sleep_hr": 0.88,
+            "deep_sleep_percent": 12.6,
+            "core_sleep_hr": 4.15,
+            "core_sleep_percent": 59.9,
+            "rem_sleep_hr": 1.68,
+            "rem_sleep_percent": 24.3,
+            "awake_hr": 0.22,
+            "awake_percent": 3.2,
+            "total_sleep_hr": 6.93
+          },
+          {
+            "date": "2025-04-21",
+            "deep_sleep_hr": 1.99,
+            "deep_sleep_percent": 15.3,
+            "core_sleep_hr": 7.88,
+            "core_sleep_percent": 60.6,
+            "rem_sleep_hr": 1.79,
+            "rem_sleep_percent": 13.8,
+            "awake_hr": 1.33,
+            "awake_percent": 10.3,
+            "total_sleep_hr": 12.99
+          },
+          {
+            "date": "2025-04-22",
+            "deep_sleep_hr": 0,
+            "deep_sleep_percent": 0.0,
+            "core_sleep_hr": 1.33,
+            "core_sleep_percent": 70.8,
+            "rem_sleep_hr": 0.28,
+            "rem_sleep_percent": 15.0,
+            "awake_hr": 0.27,
+            "awake_percent": 14.2,
+            "total_sleep_hr": 1.88
+          },
+          {
+            "date": "2025-04-23",
+            "deep_sleep_hr": 1.81,
+            "deep_sleep_percent": 23.6,
+            "core_sleep_hr": 3.66,
+            "core_sleep_percent": 47.8,
+            "rem_sleep_hr": 1.6,
+            "rem_sleep_percent": 20.9,
+            "awake_hr": 0.58,
+            "awake_percent": 7.6,
+            "total_sleep_hr": 7.65
+          },
+          {
+            "date": "2025-04-24",
+            "deep_sleep_hr": 0.26,
+            "deep_sleep_percent": 3.4,
+            "core_sleep_hr": 3.54,
+            "core_sleep_percent": 47.2,
+            "rem_sleep_hr": 1.63,
+            "rem_sleep_percent": 21.8,
+            "awake_hr": 0.08,
+            "awake_percent": 1.1,
+            "total_sleep_hr": 7.51
+          },
+          {
+            "date": "2025-04-25",
+            "deep_sleep_hr": 0.61,
+            "deep_sleep_percent": 17.3,
+            "core_sleep_hr": 2.37,
+            "core_sleep_percent": 67.1,
+            "rem_sleep_hr": 0.53,
+            "rem_sleep_percent": 14.9,
+            "awake_hr": 0.03,
+            "awake_percent": 0.7,
+            "total_sleep_hr": 3.53
+          },
+          {
+            "date": "2025-04-26",
+            "deep_sleep_hr": 1.12,
+            "deep_sleep_percent": 17.0,
+            "core_sleep_hr": 4.07,
+            "core_sleep_percent": 61.5,
+            "rem_sleep_hr": 1.31,
+            "rem_sleep_percent": 19.7,
+            "awake_hr": 0.12,
+            "awake_percent": 1.8,
+            "total_sleep_hr": 6.63
+          }
+        ]
+      },
+    {
+    "metrics": "step_count",
+    "days": [
+      {
+        "date": "2025-04-12",
+        "total_steps": 1218
+      },
+      {
+        "date": "2025-04-13",
+        "total_steps": 1141
+      },
+      {
+        "date": "2025-04-14",
+        "total_steps": 2373
+      },
+      {
+        "date": "2025-04-15",
+        "total_steps": 3242
+      },
+      {
+        "date": "2025-04-16",
+        "total_steps": 3663
+      },
+      {
+        "date": "2025-04-17",
+        "total_steps": 4372
+      },
+      {
+        "date": "2025-04-18",
+        "total_steps": 5651
+      },
+      {
+        "date": "2025-04-19",
+        "total_steps": 2011
+      },
+      {
+        "date": "2025-04-20",
+        "total_steps": 3064
+      },
+      {
+        "date": "2025-04-21",
+        "total_steps": 4222
+      },
+      {
+        "date": "2025-04-22",
+        "total_steps": 4555
+      },
+      {
+        "date": "2025-04-23",
+        "total_steps": 2304
+      },
+      {
+        "date": "2025-04-24",
+        "total_steps": 1643
+      },
+      {
+        "date": "2025-04-25",
+        "total_steps": 6659
+      },
+      {
+        "date": "2025-04-26",
+        "total_steps": 10061
+      }
+    ]
+}, 
+{
+    "metrics": "heart_rate_variability",
+    "days": [
+      {
+        "date": "2025-04-13",
+        "records": [
+          {
+            "time": "00:53:59",
+            "qty": 22.62
+          },
+          {
+            "time": "02:59:24",
+            "qty": 45.88
+          },
+          {
+            "time": "04:53:29",
+            "qty": 17.22
+          },
+          {
+            "time": "06:53:29",
+            "qty": 28.14
+          },
+          {
+            "time": "08:53:29",
+            "qty": 27.35
+          },
+          {
+            "time": "10:56:43",
+            "qty": 39.23
+          },
+          {
+            "time": "12:54:03",
+            "qty": 20.35
+          },
+          {
+            "time": "14:58:13",
+            "qty": 26.07
+          },
+          {
+            "time": "16:56:44",
+            "qty": 19.21
+          },
+          {
+            "time": "21:21:38",
+            "qty": 20.27
+          },
+          {
+            "time": "23:25:50",
+            "qty": 17.8
+          }
+        ]
+      },
+      {
+        "date": "2025-04-14",
+        "records": [
+          {
+            "time": "01:24:10",
+            "qty": 82.06
+          },
+          {
+            "time": "02:53:30",
+            "qty": 23.08
+          },
+          {
+            "time": "04:53:45",
+            "qty": 34.91
+          },
+          {
+            "time": "06:53:30",
+            "qty": 19.49
+          },
+          {
+            "time": "08:54:10",
+            "qty": 34.12
+          },
+          {
+            "time": "10:57:00",
+            "qty": 36.85
+          },
+          {
+            "time": "15:15:28",
+            "qty": 27.47
+          },
+          {
+            "time": "15:17:18",
+            "qty": 36.27
+          },
+          {
+            "time": "16:59:16",
+            "qty": 25.36
+          },
+          {
+            "time": "18:57:08",
+            "qty": 35.01
+          },
+          {
+            "time": "20:57:15",
+            "qty": 14.84
+          },
+          {
+            "time": "22:53:30",
+            "qty": 28.07
+          }
+        ]
+      },
+      {
+        "date": "2025-04-15",
+        "records": [
+          {
+            "time": "00:53:25",
+            "qty": 25.2
+          },
+          {
+            "time": "02:53:30",
+            "qty": 25.52
+          },
+          {
+            "time": "04:53:30",
+            "qty": 48.26
+          },
+          {
+            "time": "06:59:19",
+            "qty": 31.23
+          },
+          {
+            "time": "08:53:25",
+            "qty": 35.92
+          },
+          {
+            "time": "10:57:19",
+            "qty": 32.14
+          },
+          {
+            "time": "18:38:40",
+            "qty": 49.05
+          },
+          {
+            "time": "18:56:17",
+            "qty": 50.68
+          },
+          {
+            "time": "20:59:32",
+            "qty": 44.17
+          },
+          {
+            "time": "22:56:52",
+            "qty": 74.59
+          }
+        ]
+      },
+      {
+        "date": "2025-04-16",
+        "records": [
+          {
+            "time": "01:01:07",
+            "qty": 79.08
+          },
+          {
+            "time": "02:53:28",
+            "qty": 15.54
+          },
+          {
+            "time": "04:53:27",
+            "qty": 41.19
+          },
+          {
+            "time": "06:53:30",
+            "qty": 26.62
+          },
+          {
+            "time": "08:53:29",
+            "qty": 32.55
+          },
+          {
+            "time": "10:59:56",
+            "qty": 47.28
+          },
+          {
+            "time": "12:53:39",
+            "qty": 61.46
+          },
+          {
+            "time": "14:53:42",
+            "qty": 46.75
+          },
+          {
+            "time": "22:23:40",
+            "qty": 16.23
+          },
+          {
+            "time": "22:54:05",
+            "qty": 38.01
+          }
+        ]
+      },
+      {
+        "date": "2025-04-17",
+        "records": [
+          {
+            "time": "00:53:25",
+            "qty": 28.78
+          },
+          {
+            "time": "02:53:30",
+            "qty": 45.79
+          },
+          {
+            "time": "04:53:28",
+            "qty": 47.64
+          },
+          {
+            "time": "06:53:24",
+            "qty": 39.6
+          },
+          {
+            "time": "08:53:56",
+            "qty": 65.27
+          },
+          {
+            "time": "10:54:42",
+            "qty": 44.64
+          },
+          {
+            "time": "13:03:49",
+            "qty": 42.5
+          },
+          {
+            "time": "14:57:47",
+            "qty": 46.04
+          },
+          {
+            "time": "21:25:14",
+            "qty": 23.98
+          },
+          {
+            "time": "22:54:53",
+            "qty": 30.93
+          }
+        ]
+      },
+      {
+        "date": "2025-04-18",
+        "records": [
+          {
+            "time": "00:53:29",
+            "qty": 46.62
+          },
+          {
+            "time": "02:53:53",
+            "qty": 20.31
+          },
+          {
+            "time": "04:53:29",
+            "qty": 21.45
+          },
+          {
+            "time": "07:21:17",
+            "qty": 40.06
+          },
+          {
+            "time": "08:53:27",
+            "qty": 38.44
+          },
+          {
+            "time": "10:53:29",
+            "qty": 28.86
+          },
+          {
+            "time": "13:02:42",
+            "qty": 71.73
+          },
+          {
+            "time": "16:48:15",
+            "qty": 56.55
+          },
+          {
+            "time": "17:02:24",
+            "qty": 39.26
+          },
+          {
+            "time": "19:44:06",
+            "qty": 57.66
+          },
+          {
+            "time": "20:54:01",
+            "qty": 22.98
+          },
+          {
+            "time": "22:53:28",
+            "qty": 16.92
+          }
+        ]
+      },
+      {
+        "date": "2025-04-19",
+        "records": [
+          {
+            "time": "00:53:27",
+            "qty": 33.98
+          },
+          {
+            "time": "02:53:31",
+            "qty": 45.56
+          },
+          {
+            "time": "04:53:28",
+            "qty": 39.11
+          },
+          {
+            "time": "06:53:28",
+            "qty": 23.14
+          },
+          {
+            "time": "08:53:29",
+            "qty": 43.5
+          },
+          {
+            "time": "10:53:27",
+            "qty": 33.44
+          },
+          {
+            "time": "13:00:33",
+            "qty": 49.75
+          },
+          {
+            "time": "14:56:31",
+            "qty": 30.57
+          },
+          {
+            "time": "17:31:40",
+            "qty": 57.91
+          },
+          {
+            "time": "18:55:15",
+            "qty": 24.14
+          },
+          {
+            "time": "20:53:28",
+            "qty": 19.86
+          },
+          {
+            "time": "22:53:30",
+            "qty": 17.93
+          }
+        ]
+      },
+      {
+        "date": "2025-04-20",
+        "records": [
+          {
+            "time": "00:53:29",
+            "qty": 39.76
+          },
+          {
+            "time": "02:53:29",
+            "qty": 28.1
+          },
+          {
+            "time": "04:53:26",
+            "qty": 38.58
+          },
+          {
+            "time": "06:53:31",
+            "qty": 26.94
+          },
+          {
+            "time": "08:55:31",
+            "qty": 38.1
+          },
+          {
+            "time": "17:58:40",
+            "qty": 28.94
+          },
+          {
+            "time": "19:04:36",
+            "qty": 28.24
+          },
+          {
+            "time": "20:53:52",
+            "qty": 32.8
+          },
+          {
+            "time": "23:10:25",
+            "qty": 29.26
+          }
+        ]
+      },
+      {
+        "date": "2025-04-21",
+        "records": [
+          {
+            "time": "00:53:31",
+            "qty": 15.8
+          },
+          {
+            "time": "02:53:31",
+            "qty": 41.8
+          },
+          {
+            "time": "04:53:24",
+            "qty": 21.23
+          },
+          {
+            "time": "06:53:28",
+            "qty": 111.84
+          },
+          {
+            "time": "09:01:32",
+            "qty": 53.48
+          },
+          {
+            "time": "10:57:52",
+            "qty": 42.27
+          },
+          {
+            "time": "12:55:46",
+            "qty": 38.92
+          },
+          {
+            "time": "14:54:19",
+            "qty": 25.46
+          },
+          {
+            "time": "17:05:03",
+            "qty": 33.66
+          },
+          {
+            "time": "18:53:32",
+            "qty": 20.85
+          },
+          {
+            "time": "20:54:07",
+            "qty": 35.56
+          },
+          {
+            "time": "22:54:08",
+            "qty": 50.63
+          }
+        ]
+      },
+      {
+        "date": "2025-04-22",
+        "records": [
+          {
+            "time": "00:53:27",
+            "qty": 46.32
+          },
+          {
+            "time": "03:30:38",
+            "qty": 39.91
+          },
+          {
+            "time": "05:02:33",
+            "qty": 39.88
+          },
+          {
+            "time": "06:55:36",
+            "qty": 19.41
+          },
+          {
+            "time": "09:07:15",
+            "qty": 56.73
+          },
+          {
+            "time": "11:10:52",
+            "qty": 43.93
+          },
+          {
+            "time": "13:15:55",
+            "qty": 43.09
+          },
+          {
+            "time": "14:58:11",
+            "qty": 21.69
+          },
+          {
+            "time": "17:02:32",
+            "qty": 30.54
+          },
+          {
+            "time": "23:13:40",
+            "qty": 34.49
+          }
+        ]
+      },
+      {
+        "date": "2025-04-23",
+        "records": [
+          {
+            "time": "00:53:30",
+            "qty": 12.69
+          },
+          {
+            "time": "02:53:30",
+            "qty": 14.14
+          },
+          {
+            "time": "04:53:30",
+            "qty": 25.04
+          },
+          {
+            "time": "06:53:30",
+            "qty": 33.75
+          },
+          {
+            "time": "09:06:29",
+            "qty": 40.49
+          },
+          {
+            "time": "10:55:44",
+            "qty": 34.92
+          },
+          {
+            "time": "14:25:25",
+            "qty": 25.38
+          },
+          {
+            "time": "15:21:51",
+            "qty": 62.48
+          },
+          {
+            "time": "17:21:04",
+            "qty": 38.09
+          },
+          {
+            "time": "19:02:43",
+            "qty": 23.25
+          },
+          {
+            "time": "21:07:23",
+            "qty": 64.03
+          },
+          {
+            "time": "22:53:27",
+            "qty": 11.37
+          }
+        ]
+      },
+      {
+        "date": "2025-04-24",
+        "records": [
+          {
+            "time": "00:53:32",
+            "qty": 20.66
+          },
+          {
+            "time": "02:53:27",
+            "qty": 23.86
+          },
+          {
+            "time": "04:53:32",
+            "qty": 33.59
+          },
+          {
+            "time": "06:55:42",
+            "qty": 69.14
+          },
+          {
+            "time": "09:40:39",
+            "qty": 14.59
+          },
+          {
+            "time": "10:53:31",
+            "qty": 23.26
+          },
+          {
+            "time": "13:29:54",
+            "qty": 67.0
+          },
+          {
+            "time": "14:53:55",
+            "qty": 37.25
+          },
+          {
+            "time": "16:53:43",
+            "qty": 48.95
+          },
+          {
+            "time": "18:57:51",
+            "qty": 40.54
+          },
+          {
+            "time": "21:35:52",
+            "qty": 57.93
+          },
+          {
+            "time": "22:55:30",
+            "qty": 49.44
+          }
+        ]
+      },
+      {
+        "date": "2025-04-25",
+        "records": [
+          {
+            "time": "01:12:24",
+            "qty": 46.83
+          },
+          {
+            "time": "02:53:29",
+            "qty": 56.59
+          },
+          {
+            "time": "04:53:29",
+            "qty": 33.44
+          },
+          {
+            "time": "06:54:02",
+            "qty": 15.42
+          },
+          {
+            "time": "09:22:28",
+            "qty": 25.19
+          },
+          {
+            "time": "11:01:54",
+            "qty": 42.18
+          },
+          {
+            "time": "12:53:30",
+            "qty": 36.53
+          },
+          {
+            "time": "14:55:03",
+            "qty": 30.88
+          },
+          {
+            "time": "16:59:53",
+            "qty": 30.07
+          },
+          {
+            "time": "19:06:18",
+            "qty": 43.0
+          },
+          {
+            "time": "21:19:23",
+            "qty": 38.86
+          },
+          {
+            "time": "22:56:48",
+            "qty": 30.67
+          }
+        ]
+      },
+      {
+        "date": "2025-04-26",
+        "records": [
+          {
+            "time": "01:01:29",
+            "qty": 16.63
+          },
+          {
+            "time": "02:53:29",
+            "qty": 15.59
+          },
+          {
+            "time": "04:53:29",
+            "qty": 20.51
+          },
+          {
+            "time": "06:53:24",
+            "qty": 27.44
+          },
+          {
+            "time": "08:54:41",
+            "qty": 23.54
+          },
+          {
+            "time": "10:55:19",
+            "qty": 38.9
+          },
+          {
+            "time": "12:54:02",
+            "qty": 24.41
+          },
+          {
+            "time": "14:59:54",
+            "qty": 64.99
+          },
+          {
+            "time": "16:53:29",
+            "qty": 30.35
+          },
+          {
+            "time": "20:07:36",
+            "qty": 48.59
+          },
+          {
+            "time": "21:43:26",
+            "qty": 55.41
+          },
+          {
+            "time": "22:55:41",
+            "qty": 65.76
+          }
+        ]
+      }
+    ]
+  }
+]
