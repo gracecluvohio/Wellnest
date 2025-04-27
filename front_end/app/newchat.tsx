@@ -1,6 +1,9 @@
 import React from "react";
+import axios from "axios";
 import { View, StyleSheet, TextInput, TouchableOpacity, Text, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useForm, Controller } from "react-hook-form";
+
+const CHAT_ROUTE = "http://46.110.43.43:8080/chat";
 
 export default function NewChat() {
     const { control, handleSubmit, reset } = useForm({
@@ -9,9 +12,14 @@ export default function NewChat() {
         },
     });
 
-    const onSubmit = (data: any) => {
-        // TODO: send to backend
+    const onSubmit = async (data: any) => {
+        const payload = {
+            uid: 'user123',          // Replace with actual user ID if available
+            chatId: 'chat456',       // Replace with actual chat ID if available
+            prompt: data.message     // Message from the user
+        };
         console.log("User message:", data.message);
+        const response = await axios.post(CHAT_ROUTE, payload);
         reset(); 
     };
 
