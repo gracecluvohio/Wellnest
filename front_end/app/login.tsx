@@ -28,8 +28,8 @@ export default function Login() {
         <View style={[styles.container, { backgroundColor: isDarkMode ? '#1A936F' : '#fff' }]}>
             <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#1A936F'}]}>{"Wellnest"}</Text>
             <MaterialCommunityIcons style={styles.logo} name="flower-tulip-outline" size={100} color={isDarkMode ? '#fff' : '#88D498'} />
-            <Image source={GoogleSignIn} style={styles.googleSignIn} />
-            <Text style={[styles.text, {color: isDarkMode ? '#fff': '#155F4B'}]}>{"or"}</Text>
+            {/* <Image source={GoogleSignIn} style={styles.googleSignIn} />
+            <Text style={[styles.text, {color: isDarkMode ? '#fff': '#155F4B'}]}>{"or"}</Text> */}
             {/* <Switch value={isDarkMode} onValueChange={toggleDarkMode} /> */}
             <View style={[styles.inputWrapper, { backgroundColor: isDarkMode ? '#fff' : '#eee' }]}>
                 <TextInput
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
     }, 
     title: {
-        marginTop: 128, 
+        marginTop: 224, 
         fontSize: 64, 
         color: '#fff', 
         marginBottom: 16,
