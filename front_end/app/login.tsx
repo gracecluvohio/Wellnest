@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'reac
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useForm } from "react-hook-form";
 import { useNavigation } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const GoogleSignIn = require('@/assets/images/ios_neutral_rd_SI.png');
 
@@ -50,12 +51,22 @@ export default function Login() {
             <TouchableOpacity
                 style={styles.sendButton}
                 onPress={handleSubmit((data) => {
-                    alert(`Email: ${data.user}, Password: ${data.password}`);
+                    navigation.navigate("(tabs)");
+                    // const login = async (username: string, password: string) => {
+                    //     // const response = await fetch('https://example.com/login', {
+                    //     //     method: 'POST',
+                    //     //     headers: { 'Content-Type': 'application/json' },
+                    //     //     body: JSON.stringify({ username, password }),
+                    //     // });
+                    //     // const data = await response.json();
+                    //     // if (data.token) {
+                    //     //     await AsyncStorage.setItem('authToken', data.token); // won't be a token
+                    //     // }
+                    //     const token = await AsyncStorage.getItem('authToken');
+                        
+                    // };
                 })}
-                onPressOut={() => {
-                    // @ts-expect-error
-                    navigation.navigate('landing');
-                }}
+                onPressOut={() => {navigation.navigate("landing");}}
             >
                 <Text style={styles.sendText}>Login</Text>
             </TouchableOpacity>

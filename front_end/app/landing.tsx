@@ -6,12 +6,12 @@ export default function Landing() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Hello, welcome to Wellnest.</Text>
+            <Text style={styles.text}>Hello, welcome to Wellnest. This is your personal healthcare provider. </Text>
             <Pressable onPressOut={()=> {
                 // @ts-expect-error
                 navigation.navigate("(tabs)");
             }}>
-                <Text style={styles.text}>Enter</Text>
+                <Text style={[styles.text, { marginTop: 16, fontSize: 16, color: 'grey', marginLeft: 200}]}>Enter</Text>
             </Pressable>
         </View>
     );
@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
     }, 
     text: {
+        marginHorizontal: 48, 
+        marginTop: 320, 
         fontSize: 24, 
         color: '#fff',
     }
