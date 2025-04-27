@@ -46,11 +46,6 @@ export default function TabLayout() {
                 tabBarIcon: ({ color, focused }) => (
                 <Ionicons name={focused ? 'chatbox' : 'chatbox-outline'} color={color} size={ICON_SIZE} />
                 ),
-                headerLeft: () => (
-                    <>
-                      <Ionicons size={ICON_SIZE} name="menu" color={isDarkMode ? '#fff' : '#222'} style={{marginLeft: 15}} />
-                    </>
-                  )
             }}
             />
             <Tabs.Screen

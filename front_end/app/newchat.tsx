@@ -12,60 +12,53 @@ import {
   Keyboard,
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
+import { useTheme } from "@/app/contexts/ThemeContext";
 
 const NEW_CHAT_ROUTE = "http://46.110.43.43:8080/new-chat";
-const TEST = "http://46.110.43.43:8080/chat";
 
 export default function NewChat() {
-  // Response
-  const [res, setRes] = useState("");
-  const { control, handleSubmit, reset } = useForm({
-    defaultValues: {
-      message: "",
-    },
-  });
-
-  const onSubmit = async (data: any) => {
-    const payload = {
-      uid: "user123", // Replace with actual user ID if available
-      chatId: "chat456", // Replace with actual chat ID if available
-      prompt: data.message, // Message from the user
+    const { isDarkMode } = useTheme();
+    const [res, setRes] = useState("");
+    const { control, handleSubmit, reset } = useForm({ defaultValues: { message: "" } });
+  
+    const onSubmit = async (data: any) => {
+      const payload = {
+        uid: "user123",
+        chatId: "chat456",
+        prompt: data.message,
+      };
+      console.log("User message:", data.message);
+      const response = await axios.post(NEW_CHAT_ROUTE, payload);
+      setRes(response.data);
+      reset();
     };
-    console.log("User message:", data.message);
-    const response = await axios.post(NEW_CHAT_ROUTE, payload);
-    // const response = await axios.get(TEST, {
-    //   params: {
-    //     uid: "user123",
-    //     chatId: "680df7436ae024dd485f3fc8"
-    //   },
-    // });
-    setRes(response.data);
-    reset();
-  };
-
-  return (
-    <>
-
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+  
+    // 🌓 Dynamic theme-aware styles
+    const backgroundColor = isDarkMode ? "#25292e" : "#f5f5f5";
+    const textColor = isDarkMode ? "#fff" : "#000";
+    const inputBg = isDarkMode ? "#40414f" : "#e0e0e0";
+  
+    return (
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView
-          style={styles.container}
+          style={[styles.container, { backgroundColor }]}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          >
-            {res && (
-              <View style={styles.responseContainer}>
-                <Text style={styles.responseText}>{res}</Text>
-              </View>
-            )}
-          <View style={styles.inputWrapper}>
+        >
+          {res && (
+            <View style={[styles.responseContainer, { backgroundColor: isDarkMode ? "#343541" : "#ddd" }]}>
+              <Text style={[styles.responseText, { color: textColor }]}>{res}</Text>
+            </View>
+          )}
+          <View style={[styles.inputWrapper, { backgroundColor: inputBg }]}>
             <Controller
               control={control}
               name="message"
               rules={{ required: true }}
               render={({ field: { onChange, value } }) => (
                 <TextInput
-                  style={styles.input}
+                  style={[styles.input, { color: textColor }]}
                   placeholder="Send a message..."
-                  placeholderTextColor="#999"
+                  placeholderTextColor={isDarkMode ? "#999" : "#666"}
                   onChangeText={onChange}
                   value={value}
                   returnKeyType="send"
@@ -82,9 +75,9 @@ export default function NewChat() {
           </View>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
-    </>
-  );
-}
+    );
+  }
+  
 
 const styles = StyleSheet.create({
   responseContainer: {

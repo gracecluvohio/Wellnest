@@ -26,8 +26,8 @@ const formatMessageTimestamp = (date: string): string => {
   }
 };
 
-export default function NewChat(swipeRight: any) {
-  const { isDarkMode } = useTheme(); // ✅ Hook used correctly
+export default function NewChat(swipeRight: any, chatTitle: any) {
+  const { isDarkMode } = useTheme(); 
 
   const handlePencilPress = () => {
     console.log("pencil");
@@ -45,7 +45,7 @@ export default function NewChat(swipeRight: any) {
     <>
       <View style={[styles.chat_options, dynamicBackground]}>
         <View style={[styles.individual_chat, dynamicBackground]}>
-          <Text style={[styles.chat_text, dynamicTextColor]}>Chat screen</Text>
+          <Text style={[styles.chat_text, dynamicTextColor]}>{chatTitle.chatTitle || "Health Data Review and Consultation Chat"}</Text>
           <Text style={[styles.chat_text, dynamicTextColor]}>
             {formatMessageTimestamp(dayjs().toString())}
           </Text>
@@ -62,7 +62,7 @@ export default function NewChat(swipeRight: any) {
         )}
       </View>
       <View style={[styles.chat_options, dynamicBackground]}>
-        <Text style={[styles.description_text, dynamicTextColor]}>Description</Text>
+        <Text style={[styles.description_text, dynamicTextColor]}>A quick summary of your recent health data and follow-up discussion.</Text>
       </View>
     </>
   );

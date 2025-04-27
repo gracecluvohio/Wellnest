@@ -26,8 +26,10 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (isLoggedIn) {
+      // @ts-expect-error
       navigation.navigate("(tabs)");
     } else {
+      // @ts-expect-error
       navigation.navigate("login");
     }
   }, [isLoggedIn]);

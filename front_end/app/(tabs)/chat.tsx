@@ -6,13 +6,15 @@ import {
   PanGestureHandlerGestureEvent,
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NewChatButton from "@/components/NewChatButton";
 import NewChat from "@/components/NewChat";
 import { useTheme } from "@/app/contexts/ThemeContext";
+import axios from 'axios';
 
 
 const now = dayjs().format("YYYY-MM-DD");
+const TEST = "http://46.110.43.43:8080/chat-dialog";
 
 dayjs.extend(isYesterday);
 
@@ -37,9 +39,59 @@ const formatMessageTimestamp = (date: string): string => {
 
 export default function Chat() {
   const { isDarkMode } = useTheme();
+  const [chats, setChats] = useState<any>([]);
   const dynamicTextColor = { color: isDarkMode ? "#fff" : "#000" };
   const dynamicBackground = { backgroundColor: isDarkMode ? "#25292e" : "#f0f0f0" };
   const [swipeRight, setSwipeRight] = useState(false);
+
+  useEffect(() => {
+    const fetchChats = async () => {
+      try {
+        const data = await handleQueryChats();
+        const fetchedChats = data?.chatDialog;
+  
+        if (Array.isArray(fetchedChats) && fetchedChats.length > 0) {
+          setChats(fetchedChats);
+        } else {
+          // Default fallback
+          setChats([
+            {
+              _id: "680df0b32e1284eb1730b111",
+              uid: "user123",
+              chatTitle: "Health Data Review and Consultation Chat",
+              __v: 0,
+            },
+          ]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch chats, using fallback:", error);
+        // In case of error, also use fallback
+        setChats([
+          {
+            _id: "680df0b32e1284eb1730b111",
+            uid: "user123",
+            chatTitle: "Health Data Review and Consultation Chat",
+            __v: 0,
+          },
+        ]);
+      }
+    };
+  
+    fetchChats();
+  }, []);
+
+  const handleQueryChats = async () => {
+
+    const response = await axios.get(TEST, {
+        params: {
+          uid: "user123",
+        },
+      });
+
+      return response.data
+  }
+
+  handleQueryChats()
 
   const handleGestureEvent = (event: PanGestureHandlerGestureEvent) => {
     const { translationX } = event.nativeEvent;
@@ -61,7 +113,13 @@ export default function Chat() {
             <NewChatButton />
             <Text style={[styles.new_chat_text, dynamicTextColor]}>New Chat</Text>
           </View>
-          <NewChat swipeRight={swipeRight} />
+          {chats.map((chat: any) => (
+          <NewChat
+            key={chat._id}
+            swipeRight={swipeRight}
+            chatTitle={chat.chatTitle}
+          />
+        ))}
         </View>
       </PanGestureHandler>
     </GestureHandlerRootView>

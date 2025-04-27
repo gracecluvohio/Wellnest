@@ -4,9 +4,13 @@ import * as DocumentPicker from "expo-document-picker";
 import React, { useState, useCallback } from "react";
 import { useNavigation } from "expo-router";
 import { useTheme } from "@/app/contexts/ThemeContext";
+import axios from "axios";
+import { exec } from "child_process";
 
 const DEFAULT_ICON_SIZE = 24;
 const PLUS_ICON_SIZE = 96;
+
+const NEW_UPLOAD_ROUTE = "http://46.110.43.43:8080/user-info-document";
 
 type FileResponse = DocumentPicker.DocumentPickerResult | File;
 
@@ -27,6 +31,20 @@ export default function Add() {
           // TODO: Send to backend
           console.log("Selected file on web:", file);
           setFileResponse([file]);
+          const formData = new FormData();
+          formData.append("uid", "user123");
+          formData.append("file", file); 
+
+          const response = await fetch(
+            "http://46.110.43.43:8080/user-info-document",
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+
+          const result = await response.json();
+          console.log(result);
         }
       };
 
@@ -53,18 +71,35 @@ export default function Add() {
 
   return (
     <>
-      <View style={[styles.add_screen, { backgroundColor: isDarkMode ? '#25292e' : '#fff' }]}>
+      <View
+        style={[
+          styles.add_screen,
+          { backgroundColor: isDarkMode ? "#25292e" : "#fff" },
+        ]}
+      >
         <Ionicons
           size={PLUS_ICON_SIZE}
           name="cloud-upload"
-          color={isDarkMode ? 'white' : '#25292e'}
+          color={isDarkMode ? "white" : "#25292e"}
           onPress={handleDocumentSelection}
         />
-        <Text style={[styles.upload_text, {color: isDarkMode ? 'white' : '#25292e'}]}>Upload PDF</Text>
+        <Text
+          style={[
+            styles.upload_text,
+            { color: isDarkMode ? "white" : "#25292e" },
+          ]}
+        >
+          Upload PDF
+        </Text>
       </View>
       {/* TODO: Add logic to handle icons changing on tap */}
       {/* TODO: handle form input  */}
-      <View style={[styles.add_options, { backgroundColor: isDarkMode ? '#25292e' : '#fff' }]}>
+      <View
+        style={[
+          styles.add_options,
+          { backgroundColor: isDarkMode ? "#25292e" : "#fff" },
+        ]}
+      >
         <Button title="Or Manual Input" onPress={handlePress} />
       </View>
     </>
