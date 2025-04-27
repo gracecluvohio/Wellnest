@@ -3,6 +3,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import * as DocumentPicker from "expo-document-picker";
 import React, { useState, useCallback } from "react";
 import { useNavigation } from "expo-router";
+import { useTheme } from "@/app/contexts/ThemeContext";
 
 const DEFAULT_ICON_SIZE = 24;
 const PLUS_ICON_SIZE = 96;
@@ -10,6 +11,7 @@ const PLUS_ICON_SIZE = 96;
 type FileResponse = DocumentPicker.DocumentPickerResult | File;
 
 export default function Add() {
+  const { isDarkMode } = useTheme();
   const navigation = useNavigation();
   const [fileResponse, setFileResponse] = useState<FileResponse[]>([]);
 
@@ -51,18 +53,18 @@ export default function Add() {
 
   return (
     <>
-      <View style={styles.add_screen}>
+      <View style={[styles.add_screen, { backgroundColor: isDarkMode ? '#25292e' : '#fff' }]}>
         <Ionicons
           size={PLUS_ICON_SIZE}
           name="cloud-upload"
-          color="white"
+          color={isDarkMode ? 'white' : '#25292e'}
           onPress={handleDocumentSelection}
         />
-        <Text style={styles.upload_text}>Upload PDF</Text>
+        <Text style={[styles.upload_text, {color: isDarkMode ? 'white' : '#25292e'}]}>Upload PDF</Text>
       </View>
       {/* TODO: Add logic to handle icons changing on tap */}
       {/* TODO: handle form input  */}
-      <View style={styles.add_options}>
+      <View style={[styles.add_options, { backgroundColor: isDarkMode ? '#25292e' : '#fff' }]}>
         <Button title="Or Manual Input" onPress={handlePress} />
       </View>
     </>

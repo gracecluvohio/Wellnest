@@ -9,6 +9,7 @@ import {
 import React, { useState } from "react";
 import NewChatButton from "@/components/NewChatButton";
 import NewChat from "@/components/NewChat";
+import { useTheme } from "@/app/contexts/ThemeContext";
 
 
 const now = dayjs().format("YYYY-MM-DD");
@@ -34,6 +35,7 @@ const formatMessageTimestamp = (date: string): string => {
 };
 
 export default function Chat() {
+  const { isDarkMode } = useTheme();
   const [swipeRight, setSwipeRight] = useState(false);
 
   const handleGestureEvent = (event: PanGestureHandlerGestureEvent) => {
@@ -51,7 +53,7 @@ export default function Chat() {
   return (
     <GestureHandlerRootView>
       <PanGestureHandler onGestureEvent={handleGestureEvent}>
-        <View style={styles.chat_screen}>
+        <View style={[styles.chat_screen, {backgroundColor: isDarkMode ? '#25292e' : '#fff'}]}>
           <View style={styles.add_chat_button}>
             <NewChatButton />
             <Text style={styles.new_chat_text}>New Chat</Text>

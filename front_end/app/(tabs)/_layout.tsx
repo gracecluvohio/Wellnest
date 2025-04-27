@@ -1,23 +1,24 @@
 import { Tabs } from 'expo-router'; 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import SettingsButton from '@/components/SettingsButton';
-
+import { useTheme } from '@/app/contexts/ThemeContext';
 
 const ICON_SIZE = 24;
 const HEADER_ALIGNMENT = 'left';
 
 export default function TabLayout() {
+    const { isDarkMode } = useTheme();
     return (
         <Tabs
             screenOptions={{
-            tabBarActiveTintColor: '#ffd33d',
+            tabBarActiveTintColor: (isDarkMode ? '#1A936F' : '#222'),
             headerStyle: {
-                backgroundColor: '#25292e',
+                backgroundColor: (isDarkMode ? '#25292e' : '#fff'),
             },
             headerShadowVisible: false,
-            headerTintColor: '#fff',
+            headerTintColor: (isDarkMode ? '#fff' : '#222'),
             tabBarStyle: {
-                backgroundColor: '#25292e',
+                backgroundColor: (isDarkMode ? '#25292e' : '#eee'),
             },
             }}
         >
@@ -32,7 +33,7 @@ export default function TabLayout() {
                 headerRight: () => (
                     <>
                         <SettingsButton />
-                        <Ionicons name="help" size={ICON_SIZE} color="#fff" style={{ marginRight: 15 }} />
+                        <Ionicons name="help" size={ICON_SIZE} color={isDarkMode ? '#fff' : '#222'} style={{ marginRight: 15 }} />
                     </>
                 ),
             }}
@@ -47,7 +48,7 @@ export default function TabLayout() {
                 ),
                 headerLeft: () => (
                     <>
-                      <Ionicons size={ICON_SIZE} name="menu" color="white" style={{marginLeft: 15}} />
+                      <Ionicons size={ICON_SIZE} name="menu" color={isDarkMode ? '#fff' : '#222'} style={{marginLeft: 15}} />
                     </>
                   )
             }}

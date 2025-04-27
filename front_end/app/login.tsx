@@ -3,7 +3,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useForm } from "react-hook-form";
 import { useNavigation } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {ThemeProvider, useTheme} from '@/app/contexts/ThemeContext'; 
+import { useTheme} from '@/app/contexts/ThemeContext'; 
 
 const GoogleSignIn = require('@/assets/images/ios_neutral_rd_SI.png');
 

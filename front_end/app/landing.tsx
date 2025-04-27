@@ -2,6 +2,7 @@ import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useNavigation } from "expo-router";
 
 export default function Landing() {
+
     const navigation = useNavigation();
 
     return (
@@ -11,7 +12,7 @@ export default function Landing() {
                 // @ts-expect-error
                 navigation.navigate("(tabs)");
             }}>
-                <Text style={[styles.text, { marginTop: 16, fontSize: 16, color: 'grey', marginLeft: 200}]}>Enter</Text>
+                <Text style={[styles.text, { marginTop: 16, fontSize: 16, color: '#88D498', marginLeft: 200}]}>Enter</Text>
             </Pressable>
         </View>
     );
@@ -20,13 +21,13 @@ export default function Landing() {
 const styles = StyleSheet.create({
     container: {
         flex: 1, 
-        backgroundColor: '#25292e', 
+        backgroundColor: '#fff', 
         alignItems: 'center', 
     }, 
     text: {
         marginHorizontal: 48, 
         marginTop: 320, 
         fontSize: 24, 
-        color: '#fff',
+        color: '#222',
     }
 })
