@@ -58,6 +58,7 @@ export default function Add() {
           color="white"
           onPress={handleDocumentSelection}
         />
+        <Text style={styles.upload_text}>Upload PDF</Text>
       </View>
       {/* TODO: Add logic to handle icons changing on tap */}
       {/* TODO: handle form input  */}
@@ -87,5 +88,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
+  },
+  upload_text: {
+    fontSize: 24,
+    color: "#fff",
+    textAlign: "center",
   },
 });
